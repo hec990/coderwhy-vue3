@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 一、正确用法 -->
+    <!-- 1. Mustache的基本使用 -->
+    <div>{{ message }}</div>    
+    <hr>
+
+    <!-- 2. 里面可以写表达式 -->
+    <div>{{ count * 10}}</div>
+    <div>{{ message.split(" ").reverse().join(" ") }}</div>
+
+    <hr>
+    <!-- 3. 支持三元运算符 -->
+    <div>{{ isShow ? '哈哈哈' : ''}}</div>
+    <button @click="toggle">切换</button>
+
+    <hr>
+    <!-- 4. 也可以用计算属性 -->
+    <div>{{ getReverseMessage }}</div>
+
+    <!-- 二、错误用法 -->
+    <!-- 1. 不能写赋值语句 -->
+    <div>{{ var name = "abc"}}</div>
+    <!-- 2. 不能写if语句 -->
+    <div>{{ if(isShow) return "哈哈哈"}}</div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          count: 100,
+          isShow: true
+        }
+      },
+      methods: {
+        toggle(){
+          this.isShow = !this.isShow;
+        }
+      },
+      computed: {
+        getReverseMessage(){
+          return this.message.split(" ").reverse().join(" ")
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
