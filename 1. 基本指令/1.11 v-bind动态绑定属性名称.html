@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1. 绑定单个属性名称 -->
+    <div :[name]="value">{{message}}</div>
+
+    <!-- 2. 绑定一个对象的属性名称 -->
+    <div v-bind="info">{{message}}</div>
+  </template>
+
+  <script src="js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          name: 'name1',
+          value: 'xiaohe',
+          info: {
+              name: 'xiaohe',
+              age: 18,
+              hobby: 'run'
+          }
+        }
+      },
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1. 普通的绑定方式 -->
+    <div :class="className">{{ message }}</div>
+
+    <!-- 2. 对象绑定 -->
+    <!-- 动态添加类名，value为true会给当前元素添加类名，false则不添加 -->
+    <div class="xiaohe1" :class="{xiaohe2:false,xiaohe3: true}">{{ message }}</div>
+
+    <!-- 3. 绑定对象 -->
+    <div :class="classObj">{{ message }}</div>
+
+    <!-- 4. 从methods中获取添加 -->
+    <div :class="classObj2()">{{ message }}</div>
+  </template>
+
+  <script src="js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          className: 'xiaohe',
+          classObj:{
+            xiaohe1: true,
+            xiaohe2: true,
+            xiaohe3: false
+          }
+        }
+      },
+      methods: {
+        classObj2(){
+          return {
+            xiaohe4: true,
+            xiaohe5: true
+          }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

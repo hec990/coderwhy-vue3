@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1. 基本使用 -->
+    <div :style="{color: 'red' , fontSize: '30px' }">{{message}}</div>
+ 
+    <!-- 2. 对象数据 -->
+    <div :style="styleObj">{{ message }}</div>
+
+    <!-- 3. 调用一个方法 -->
+    <div :style="styleObj2()">{{ message }}</div>
+
+</template>
+
+  <script src="js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: "Hello World",
+          styleObj:{
+              'font-size': '30px',
+              'color': 'red',
+              'background-color': 'skyblue'
+          }
+        }
+      },
+      methods: {
+        styleObj2(){
+            return {
+              'font-size': '30px',
+              'color': 'red',
+              'background-color': 'green'
+            }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

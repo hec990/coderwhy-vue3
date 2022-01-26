@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!-- 修饰符 -->
+        <!-- 1. 默认当我们点击按钮的时候，事件处理函数会冒泡到 divClick，当我们在按钮上加了.stop，就会阻止冒泡了 -->
+        <div @click="divClick">
+            <button @click.stop="btnClick">按钮</button>
+        </div>
+
+        <!-- 2. 回车后才触发 -->
+        <input type="text" @keyup.enter="onEnter">
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: "Hello World",
+                }
+            },
+            methods: {
+                divClick() {
+                    console.log('divClick');
+                },
+                btnClick() {
+                    console.log('btnClick');
+                },
+                onEnter(event) {
+                    console.log(event.target.value);
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
